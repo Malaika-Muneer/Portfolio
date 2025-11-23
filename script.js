@@ -1,62 +1,36 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Close mobile menu if open
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        }
-    });
-});
-
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
+// Mobile Menu Toggle
+const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
-menuToggle.addEventListener('click', () => {
+navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    menuToggle.classList.toggle('active');
 });
 
-// Close mobile menu when a link is clicked
+// Close menu when link is clicked
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
-        menuToggle.classList.remove('active');
     });
 });
 
-// Update active navigation link based on scroll position
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.pageYOffset >= sectionTop - 100 && window.pageYOffset < sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`.nav-link[href="#${section.id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         }
     });
 });
 
-// Contact form handling
+// Contact Form Submission
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
@@ -64,42 +38,85 @@ if (contactForm) {
         e.preventDefault();
         
         const formData = new FormData(contactForm);
+        const name = contactForm.querySelector('input[type="text"]').value;
+        const email = contactForm.querySelector('input[type="email"]').value;
+        const message = contactForm.querySelector('textarea').value;
+
+        // Create mailto link
+        const mailtoLink = `mailto:malaikamuneer15@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(email)}`;
         
-        // Show success message
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Message Sent!';
-        submitBtn.style.background = 'var(--accent-cyan)';
+        window.location.href = mailtoLink;
         
-        // Reset form
+        // Optional: Show success message
+        alert('Thank you for your message! Opening email client...');
         contactForm.reset();
-        
-        // Restore button after 3 seconds
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = '';
-        }, 3000);
     });
 }
 
-// Add animation to elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Image Upload Functionality
+function setupImageUpload(imageElementId, fileInputId) {
+    const imageElement = document.getElementById(imageElementId);
+    
+    if (!imageElement) return;
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+    // Create invisible file input
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+
+    // Click on image to upload
+    imageElement.style.cursor = 'pointer';
+    imageElement.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Handle file selection
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imageElement.src = event.target.result;
+                // Store in localStorage
+                localStorage.setItem(imageElementId, event.target.result);
+            };
+            reader.readAsDataURL(file);
         }
     });
-}, observerOptions);
 
-document.querySelectorAll('.service-card, .project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(card);
+    // Load saved image from localStorage on page load
+    const savedImage = localStorage.getItem(imageElementId);
+    if (savedImage) {
+        imageElement.src = savedImage;
+    }
+}
+
+// Initialize image uploads
+document.addEventListener('DOMContentLoaded', () => {
+    setupImageUpload('profileImage', 'profileImageInput');
+    setupImageUpload('aboutImage', 'aboutImageInput');
+});
+
+// Add active state to navigation based on scroll
+window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+            link.style.color = 'var(--primary-color)';
+        } else {
+            link.style.color = 'var(--text-primary)';
+        }
+    });
 });
