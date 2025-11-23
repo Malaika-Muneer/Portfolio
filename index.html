@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaika Muneer - Backend Developer</title>
+    <title>Malaika Muneer - Backend Developer Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-code"></i> Malaika
-            </div>
-            <div class="nav-toggle" id="navToggle">
+            <div class="nav-brand">Portfolio.</div>
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -35,21 +33,31 @@
             <div class="hero-content">
                 <h1 class="hero-subtitle">Hello, It's Me</h1>
                 <h2 class="hero-title">Malaika Muneer</h2>
-                <p class="hero-tagline">And I'm a <span class="cyan-text">Backend Developer</span></p>
-                <p class="hero-description">
-                    Passionate Computer Engineering student at UET Taxila, specializing in building robust backend solutions, APIs, and scalable systems with Java, Python, and Go.
-                </p>
+                <p class="hero-description">And I'm a <span class="cyan-text">Backend Developer</span></p>
+                <p class="hero-bio">Computer Engineering student at UET Taxila with expertise in Java, Python, and Go. Passionate about building scalable, efficient backend systems and solving complex problems.</p>
+                
                 <div class="social-links">
-                    <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:malaikamuneer15@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:malaikamuneer15@gmail.com" class="social-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+
+                <button class="cta-button">Download CV</button>
             </div>
-            <div class="hero-image">
-                <div class="image-frame">
-                    <img id="profileImage" src="https://via.placeholder.com/400x400?text=Upload+Your+Photo" alt="Profile Picture">
+
+            <div class="hero-image-container">
+                <div class="hex-frame" id="heroImageFrame">
+                    <img src="/placeholder.svg?height=400&width=400" alt="Malaika Muneer" id="heroImage">
+                    <input type="file" id="heroImageInput" accept="image/*" style="display: none;">
                 </div>
             </div>
         </div>
@@ -58,97 +66,121 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-wrapper">
-                <div class="about-image">
-                    <div class="about-image-frame">
-                        <img id="aboutImage" src="https://via.placeholder.com/350x350?text=Upload+Your+Photo" alt="About Picture">
-                    </div>
-                </div>
-                <div class="about-content">
-                    <h3 class="about-title">Backend Developer & Problem Solver</h3>
-                    <p class="about-text">
-                        I'm a passionate Computer Engineering student at UET Taxila with a strong foundation in backend development and system design. With expertise in multiple programming languages and a problem-solving mindset, I create scalable, efficient backend solutions.
-                    </p>
-                    
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h4>3+</h4>
-                            <p>Years Learning</p>
-                        </div>
-                        <div class="stat">
-                            <h4>6+</h4>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat">
-                            <h4>4</h4>
-                            <p>Programming Languages</p>
-                        </div>
-                    </div>
-
-                    <div class="about-section">
-                        <h4 class="subsection-title">Education</h4>
-                        <div class="education-item">
-                            <h5>Bachelor of Science in Computer Engineering</h5>
-                            <p class="education-detail">UET Taxila | Currently Pursuing</p>
-                            <p class="education-desc">Advanced coursework in Data Structures, Algorithms, Operating Systems, and Database Design.</p>
-                        </div>
-                    </div>
-
-                    <div class="about-section">
-                        <h4 class="subsection-title">Core Expertise</h4>
-                        <div class="expertise-grid">
-                            <div class="expertise-item">
-                                <i class="fas fa-cube"></i>
-                                <span>Backend Architecture</span>
-                            </div>
-                            <div class="expertise-item">
-                                <i class="fas fa-database"></i>
-                                <span>Database Design</span>
-                            </div>
-                            <div class="expertise-item">
-                                <i class="fas fa-network-wired"></i>
-                                <span>API Development</span>
-                            </div>
-                            <div class="expertise-item">
-                                <i class="fas fa-cogs"></i>
-                                <span>System Design</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="title-underline"></div>
             </div>
 
-            <!-- Skills Section -->
-            <div class="skills-section">
-                <h3 class="skills-title">Technical Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h5>Languages</h5>
-                        <div class="skill-list">
-                            <span class="skill-badge">Java</span>
-                            <span class="skill-badge">Python</span>
-                            <span class="skill-badge">Go</span>
-                            <span class="skill-badge">C++</span>
+            <div class="about-content">
+                <!-- Introduction -->
+                <div class="about-intro">
+                    <h3 class="about-subtitle">Professional Background</h3>
+                    <p class="about-text">
+                        I'm a dedicated backend developer currently pursuing a Computer Engineering degree at UET Taxila. With a strong foundation in software development and database design, I specialize in building robust, scalable backend systems that power modern applications. My journey in tech has equipped me with expertise in multiple programming paradigms and architectural patterns.
+                    </p>
+                </div>
+
+                <!-- Expertise Grid -->
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Core Languages</h4>
+                        <p>Proficient in Java, Python, and Go with focus on clean, maintainable code</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Database Design</h4>
+                        <p>Expert in relational databases and efficient data structure optimization</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>System Architecture</h4>
+                        <p>Building scalable systems with clean architecture principles</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Security First</h4>
+                        <p>Implementing secure coding practices and data protection measures</p>
+                    </div>
+                </div>
+
+                <!-- Education & Credentials -->
+                <div class="education-section">
+                    <h3 class="about-subtitle">Education & Credentials</h3>
+                    <div class="education-item">
+                        <div class="education-marker"></div>
+                        <div class="education-content">
+                            <h4>Bachelor of Engineering in Computer Engineering</h4>
+                            <p class="education-institution">University of Engineering and Technology (UET) Taxila</p>
+                            <p class="education-desc">Focus on software engineering, database systems, and algorithms</p>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h5>Databases</h5>
-                        <div class="skill-list">
-                            <span class="skill-badge">PostgreSQL</span>
-                            <span class="skill-badge">MySQL</span>
-                            <span class="skill-badge">MongoDB</span>
-                            <span class="skill-badge">SQLite</span>
+                </div>
+
+                <!-- Skills Summary -->
+                <div class="skills-summary">
+                    <h3 class="about-subtitle">Core Competencies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <span class="skill-label">Java Development</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-label">Python Programming</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-label">Go Language</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-label">Database Design</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-label">System Design</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-label">API Development</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 87%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h5>Tools & Technologies</h5>
-                        <div class="skill-list">
-                            <span class="skill-badge">Git</span>
-                            <span class="skill-badge">Linux</span>
-                            <span class="skill-badge">Docker</span>
-                            <span class="skill-badge">REST APIs</span>
-                        </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h4 class="stat-number">6+</h4>
+                        <p class="stat-label">Projects Completed</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4 class="stat-number">3+</h4>
+                        <p class="stat-label">Years Learning</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4 class="stat-number">100%</h4>
+                        <p class="stat-label">Dedication</p>
                     </div>
                 </div>
             </div>
@@ -158,37 +190,58 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Services I Offer</h2>
+            <div class="section-header">
+                <h2 class="section-title">Services</h2>
+                <div class="title-underline"></div>
+            </div>
+
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-code"></i>
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
                     <h3>REST API Development</h3>
-                    <p>Building scalable, efficient REST APIs with proper authentication, validation, and error handling.</p>
+                    <p>Building scalable, secure REST APIs with clean architecture and best practices</p>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Database Design</h3>
-                    <p>Designing robust database schemas optimized for performance with proper indexing and normalization.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Design & Optimization</h3>
+                    <p>Designing efficient database schemas and optimizing queries for performance</p>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-sitemap"></i>
-                    <h3>Microservices Architecture</h3>
-                    <p>Architecting scalable microservices using modern design patterns and communication protocols.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>System Architecture</h3>
+                    <p>Designing scalable, maintainable backend systems using architectural patterns</p>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Authentication & Security</h3>
-                    <p>Implementing secure authentication mechanisms and protecting applications from security vulnerabilities.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security Implementation</h3>
+                    <p>Implementing secure authentication, authorization, and data protection measures</p>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-bug"></i>
-                    <h3>Backend Optimization</h3>
-                    <p>Optimizing backend performance through code profiling, caching strategies, and database optimization.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Integration Services</h3>
+                    <p>Integrating third-party services and APIs into existing systems seamlessly</p>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Server Management</h3>
-                    <p>Managing and deploying applications on cloud platforms with proper scaling and monitoring.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Debugging & Optimization</h3>
+                    <p>Identifying bottlenecks and optimizing code for better performance</p>
                 </div>
             </div>
         </div>
@@ -197,89 +250,81 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
+            <div class="section-header">
+                <h2 class="section-title">Portfolio</h2>
+                <div class="title-underline"></div>
+            </div>
+
             <div class="portfolio-grid">
                 <div class="portfolio-card">
                     <div class="portfolio-header">
-                        <i class="fas fa-credit-card"></i>
-                        <span class="project-type">Java</span>
+                        <i class="fas fa-money-bill-wave"></i>
                     </div>
                     <h3>ATM Simulator</h3>
-                    <p>A complete ATM system simulator with user authentication, balance inquiry, withdrawals, and transaction history.</p>
+                    <p>A full-featured ATM system with user authentication, account management, and transaction handling using Java</p>
                     <div class="tech-tags">
-                        <span>Java</span>
-                        <span>OOP</span>
-                        <span>File Handling</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">OOP</span>
                     </div>
                 </div>
 
                 <div class="portfolio-card">
                     <div class="portfolio-header">
                         <i class="fas fa-utensils"></i>
-                        <span class="project-type">Database</span>
                     </div>
                     <h3>Restaurant Management System</h3>
-                    <p>Complete restaurant system with menu management, order processing, billing, and inventory tracking.</p>
+                    <p>Complete restaurant management solution with menu management, order processing, and inventory tracking</p>
                     <div class="tech-tags">
-                        <span>Java</span>
-                        <span>MySQL</span>
-                        <span>JDBC</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Database</span>
                     </div>
                 </div>
 
                 <div class="portfolio-card">
                     <div class="portfolio-header">
                         <i class="fas fa-lock"></i>
-                        <span class="project-type">Cryptography</span>
                     </div>
-                    <h3>3DES Encryption Tool</h3>
-                    <p>Implementation of Triple DES encryption algorithm for secure data encryption and decryption.</p>
+                    <h3>3DES Encryption System</h3>
+                    <p>Advanced encryption system implementing Triple DES algorithm for secure data protection and transmission</p>
                     <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Cryptography</span>
-                        <span>Security</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
                     </div>
                 </div>
 
                 <div class="portfolio-card">
                     <div class="portfolio-header">
-                        <i class="fas fa-building"></i>
-                        <span class="project-type">Java</span>
+                        <i class="fas fa-bank"></i>
                     </div>
                     <h3>Bank Management System</h3>
-                    <p>Comprehensive banking system with account management, transactions, loans, and customer tracking.</p>
+                    <p>Comprehensive banking system with account operations, loan management, and financial transactions</p>
                     <div class="tech-tags">
-                        <span>Java</span>
-                        <span>PostgreSQL</span>
-                        <span>OOP</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">SQL</span>
                     </div>
                 </div>
 
                 <div class="portfolio-card">
                     <div class="portfolio-header">
-                        <i class="fas fa-file-code"></i>
-                        <span class="project-type">Go</span>
+                        <i class="fas fa-file"></i>
                     </div>
-                    <h3>File Analyzer Tool</h3>
-                    <p>Command-line tool for analyzing file structures, calculating statistics, and generating detailed reports.</p>
+                    <h3>File Analyzer</h3>
+                    <p>Utility tool for analyzing files, extracting metadata, and performing text processing operations efficiently</p>
                     <div class="tech-tags">
-                        <span>Go</span>
-                        <span>File I/O</span>
-                        <span>CLI</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">File Processing</span>
                     </div>
                 </div>
 
                 <div class="portfolio-card">
                     <div class="portfolio-header">
                         <i class="fas fa-robot"></i>
-                        <span class="project-type">Hardware</span>
                     </div>
                     <h3>Obstacle-Avoiding Robot</h3>
-                    <p>Arduino-based robot with sensor integration for autonomous obstacle detection and navigation.</p>
+                    <p>Hardware project integrating embedded systems with backend logic for autonomous obstacle detection and avoidance</p>
                     <div class="tech-tags">
-                        <span>Arduino</span>
-                        <span>C++</span>
-                        <span>Hardware</span>
+                        <span class="tech-tag">Embedded</span>
+                        <span class="tech-tag">Hardware</span>
                     </div>
                 </div>
             </div>
@@ -289,42 +334,55 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="title-underline"></div>
+            </div>
+
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h3>Contact Information</h3>
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
                         <div>
-                            <p class="contact-label">Email</p>
+                            <h4>Email</h4>
                             <p><a href="mailto:malaikamuneer15@gmail.com">malaikamuneer15@gmail.com</a></p>
                         </div>
                     </div>
+
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
                         <div>
-                            <p class="contact-label">Phone</p>
+                            <h4>Phone</h4>
                             <p><a href="tel:+923285738948">+92 328 5738948</a></p>
                         </div>
                     </div>
+
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                         <div>
-                            <p class="contact-label">Location</p>
+                            <h4>Location</h4>
                             <p>Taxila, Pakistan</p>
                         </div>
                     </div>
-                    <div class="social-links-contact">
-                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                    </div>
                 </div>
+
                 <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
         </div>
@@ -334,6 +392,11 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Malaika Muneer. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:malaikamuneer15@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </footer>
 

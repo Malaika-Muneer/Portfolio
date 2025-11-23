@@ -1,122 +1,99 @@
-// Mobile Menu Toggle
-const navToggle = document.getElementById('navToggle');
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-navToggle.addEventListener('click', () => {
+hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close menu when link is clicked
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
     });
 });
 
-// Smooth scroll for anchor links
+// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
-
-// Contact Form Submission
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
-
-        // Create mailto link
-        const mailtoLink = `mailto:malaikamuneer15@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(email)}`;
-        
-        window.location.href = mailtoLink;
-        
-        // Optional: Show success message
-        alert('Thank you for your message! Opening email client...');
-        contactForm.reset();
-    });
-}
 
 // Image Upload Functionality
-function setupImageUpload(imageElementId, fileInputId) {
-    const imageElement = document.getElementById(imageElementId);
-    
-    if (!imageElement) return;
+const heroImageFrame = document.getElementById('heroImageFrame');
+const heroImageInput = document.getElementById('heroImageInput');
+const heroImage = document.getElementById('heroImage');
 
-    // Create invisible file input
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.style.display = 'none';
-    document.body.appendChild(fileInput);
+heroImageFrame.addEventListener('click', () => {
+    heroImageInput.click();
+});
 
-    // Click on image to upload
-    imageElement.style.cursor = 'pointer';
-    imageElement.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    // Handle file selection
-    fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                imageElement.src = event.target.result;
-                // Store in localStorage
-                localStorage.setItem(imageElementId, event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Load saved image from localStorage on page load
-    const savedImage = localStorage.getItem(imageElementId);
-    if (savedImage) {
-        imageElement.src = savedImage;
+heroImageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            heroImage.src = event.target.result;
+            localStorage.setItem('heroImage', event.target.result);
+        };
+        reader.readAsDataURL(file);
     }
-}
-
-// Initialize image uploads
-document.addEventListener('DOMContentLoaded', () => {
-    setupImageUpload('profileImage', 'profileImageInput');
-    setupImageUpload('aboutImage', 'aboutImageInput');
 });
 
-// Add active state to navigation based on scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--primary-color)';
-        } else {
-            link.style.color = 'var(--text-primary)';
-        }
-    });
+// Load saved image on page load
+window.addEventListener('load', () => {
+    const savedImage = localStorage.getItem('heroImage');
+    if (savedImage) {
+        heroImage.src = savedImage;
+    }
 });
+
+// Contact Form Handling
+const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thank you for your message! I will get back to you soon.');
+    contactForm.reset();
+});
+
+// Scroll Animation
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.service-card, .portfolio-card, .expertise-card').forEach(el => {
+    observer.observe(el);
+});
+
+// Add animation keyframes dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);
